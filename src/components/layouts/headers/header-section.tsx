@@ -2,7 +2,7 @@ import LogoAsset from "@/components/logo/logo";
 import React from "react";
 import { NavMenu } from "../menu/nav-menu";
 
-const MainHeader = () => {
+const HeaderSection = () => {
   return (
     <header className="flex flex-col">
       <nav
@@ -26,4 +26,4 @@ const MainHeader = () => {
   );
 };
 
-export default MainHeader;
+export default HeaderSection;

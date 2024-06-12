@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import cover from "/public/assets/images/bg.jpg";
 
-const PageHeader = () => {
+const HeroSection = () => {
   return (
     <div className="relative h-[70vh] z-20">
       <Image
@@ -40,4 +40,4 @@ const PageHeader = () => {
   );
 };
 
-export default PageHeader;
+export default HeroSection;
