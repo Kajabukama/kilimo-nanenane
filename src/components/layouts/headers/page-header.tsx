@@ -32,7 +32,7 @@ const PageHeader = () => {
           </div>
           <div className="flex flex-col text-white font-semibold mt-10">
             <span>08 October 2024</span>
-            <span>Morogoro, Tanzania</span>
+            <span>Dodoma, Tanzania</span>
           </div>
         </div>
       </div>

@@ -34,7 +34,7 @@ export default function Home() {
                 Welcome to The Ministry of Agriculture Nanenane 2024 Farmers
                 Annual Festival registration page. The The Ministry of
                 Agriculture Nanenane 2024 Farmers Annual Festival, will take
-                place from October 1st to 8th, 2024 in Morogoro, Tanzania.
+                place from October 1st to 8th, 2024 in Dodoma, Tanzania.
               </p>
             </div>
 

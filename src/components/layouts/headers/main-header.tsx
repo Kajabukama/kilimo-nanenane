@@ -16,7 +16,7 @@ const MainHeader = () => {
               Wizara ya Kilimo
             </span>
             <span className="text-xl font-bold text-yellow-500">
-              Nanenane - 08-08-2024, Morogoro
+              Nanenane - 08-08-2024, Dodoma
             </span>
           </div>
         </div>
