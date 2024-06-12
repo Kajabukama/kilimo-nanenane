@@ -1,6 +1,7 @@
 import LogoAsset from "@/components/logo/logo";
 import React from "react";
 import { NavMenu } from "../menu/nav-menu";
+import CountDown from "@/components/counter/counter";
 
 const HeaderSection = () => {
   return (
@@ -20,7 +21,8 @@ const HeaderSection = () => {
             </span>
           </div>
         </div>
-        <NavMenu />
+        {/* <NavMenu /> */}
+        <CountDown />
       </nav>
     </header>
   );
