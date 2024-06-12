@@ -47,7 +47,7 @@ export default function Home() {
                 theme “Innovate, Accelerate and Scale: Delivering food systems
                 transformation in a digital and climate era”. With only six
                 years left to reach the Sustainable Development Goals (SDGs) and
-                one year away from the Malabo Declaration's deadline,
+                one year away from the Malabo Declaration&rsquo;s deadline,
                 transforming African food systems stands as a paramount task,
                 crucial for ensuring food security and fostering job
                 opportunities particularly for youth and women on the continent.
