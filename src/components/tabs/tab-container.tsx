@@ -1,12 +1,88 @@
 "use client";
 import React, { useState } from "react";
 import CustomTab from "./tab";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "../ui/textarea";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Switch } from "@/components/ui/switch";
+import { toast } from "../ui/use-toast";
 import { Button } from "../ui/button";
+
+const FormSchema = z.object({
+  firstName: z.string().min(1, { message: "This field is required" }),
+  middleName: z.string().min(1, { message: "This field is required" }),
+  lastName: z.string().min(1, { message: "This field is required" }),
+  workPhone: z.string().min(1, { message: "This field is required" }),
+  mobilePhone: z.string().min(1, { message: "This field is required" }),
+  email: z.string().email().min(1, { message: "This field is required" }),
+  companyName: z.string().min(1, { message: "This field is required" }),
+  companyDescription: z.string().min(1, { message: "This field is required" }),
+  country: z.string().min(1, { message: "This field is required" }),
+  address: z.string().min(1, { message: "This field is required" }),
+  products: z.string().min(1, { message: "This field is required" }),
+  registrationType: z.string().min(1, { message: "This field is required" }),
+  boothType: z.string().min(1, { message: "This field is required" }),
+  participants: z.string().min(1, { message: "This field is required" }),
+  other: z.string().min(1, { message: "This field is required" }),
+  terms: z.boolean(),
+});
 
 const TabContainer = () => {
   const [selectedTab, setSelectedTab] = useState<boolean | null>(false);
 
-  const handleChange = () => {};
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      workPhone: "",
+      mobilePhone: "",
+      email: "",
+      companyName: "",
+      companyDescription: "",
+      country: "",
+      products: "",
+      registrationType: "",
+      boothType: "",
+      participants: "",
+      other: "",
+      terms: true,
+    },
+  });
+
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    toast({
+      title: "You submitted the following values:",
+      description: (
+        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+        </pre>
+      ),
+    });
+  }
 
   return (
     <div>
@@ -22,9 +98,9 @@ const TabContainer = () => {
       <div className="mx-auto max-w-screen-xl">
         <div className="flex p-10">
           <div className="max-w-96 text-3xl font-black uppercase">
-            Nanenane REGISTRATION 2024
+            Nanenane Exhibition REGISTRATION 2024
           </div>
-          <div className="px-10 space-y-10">
+          <div className="px-10 space-y-5">
             <div className="border-b pb-10">
               <p>
                 Welcome to The Ministry of Agriculture Nanenane 2024 Farmers
@@ -34,7 +110,7 @@ const TabContainer = () => {
               </p>
             </div>
 
-            <div className="border-b pb-10">
+            {/* <div className="border-b pb-10">
               <p className="tracking-normal leading-7">
                 Organized under the Ministry of Agriculture on behalf of the
                 President of the United Republic of Tanzania,{" "}
@@ -52,24 +128,403 @@ const TabContainer = () => {
                 technologies and equipment’s, home-grown and global solutions,
                 and scaled investments.
               </p>
-            </div>
+            </div> */}
             <div className="flex flex-col gap-y-1 font-semibold">
-              <span className="underline">Dates</span>
-              <span>Pre-Festive - October 8, 2024</span>
-              <span>Nanenane Festival - October 8-15, 2024,</span>
+              <span>
+                Theme -“Elect Reputable Local Government Leaders for Sustainable
+                Development of Agricultural Sector”
+              </span>
+              <span>Nanenane Exhibition - 01th to 8th August 2024</span>
               <span>Grounds - Dodoma Nanenane Grounds, Dodoma, Tanzania</span>
             </div>
             <div className="py-10 border-y">
-              <p>
-                Join us and over 15000 farmers and sagricultural stakeholders as
-                we discuss, define, and adopt ways of working towards
-                sustainable, resilient, and equitable Agriculture in Tanzania
-                #88TZ2024
+              <p className="text-primary font-medium">
+                Pay participation fee within 7days after registration and before
+                deadline (added). For Nzuguni Exhibition center in Dodoma please
+                pay through Account No. 50501100063 Nanenane Kanda ya Kati au
+                Airtel money +255 696 121 646 Nanenane Kanda ya Kati
               </p>
             </div>
-            <div className="grid grid-cols-3">
+            {/* <div className="grid grid-cols-3">
               <Button className="py-8">Premium Membership</Button>
-            </div>
+            </div> */}
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="w-full space-y-6"
+              >
+                <div className="flex w-full gap-x-5">
+                  <FormField
+                    control={form.control}
+                    name="firstName"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>First name</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="text"
+                            id="firstName"
+                            placeholder="First name"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="middleName"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Middle name</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="text"
+                            id="middleName"
+                            placeholder="Middle name"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="lastName"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Last name</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="text"
+                            id="lastName"
+                            placeholder="Last name"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="flex w-full gap-x-5">
+                  <FormField
+                    control={form.control}
+                    name="workPhone"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Work Phone</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="text"
+                            id="workPhone"
+                            placeholder="Work Phone"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="mobilePhone"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Mobile Phone</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="text"
+                            id="mobilePhone"
+                            placeholder="Mobile Phone"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Email Address</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="email"
+                            id="email"
+                            placeholder="Email Address"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="space-y-6">
+                  <FormField
+                    control={form.control}
+                    name="companyName"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>
+                          Name of Company/Institution/Individual:
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            type="text"
+                            id="email"
+                            placeholder="Name of Company/Institution/Individual"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="companyDescription"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Company Description</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Company description"
+                            className="resize-none"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="flex items-center gap-x-5">
+                  <div className="w-[20vw] items-center gap-1.5">
+                    <FormField
+                      control={form.control}
+                      name="country"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Country of Origin</FormLabel>
+                          <Select>
+                            <SelectTrigger className="w-full">
+                              <SelectValue placeholder="Country of Origin" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectGroup>
+                                <SelectLabel>Select Countries</SelectLabel>
+                                <SelectItem value="Tanzania">
+                                  Tanzania
+                                </SelectItem>
+                                <SelectItem value="Kenya">Kenya</SelectItem>
+                                <SelectItem value="Uganda">Uganda</SelectItem>
+                                <SelectItem value="Rwanda">Rwanda</SelectItem>
+                                <SelectItem value="Congo">Congo</SelectItem>
+                                <SelectItem value="Burundi">Burundi</SelectItem>
+                                <SelectItem value="Malawi">Malawi</SelectItem>
+                                <SelectItem value="Zambia">Zambia</SelectItem>
+                              </SelectGroup>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <FormField
+                    control={form.control}
+                    name="address"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Full company address</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Company address"
+                            className="resize-none"
+                            rows={2}
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div>
+                  <FormField
+                    control={form.control}
+                    name="products"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>
+                          Products/Services to Exhibit (list by category)
+                        </FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Products/Services to Exhibit (list by category)"
+                            className="resize-none"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="flex w-full gap-x-5">
+                  <FormField
+                    control={form.control}
+                    name="registrationType"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Registration Type</FormLabel>
+                        <Select>
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Registration type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectLabel>Types</SelectLabel>
+                              <SelectItem value="apple">Exhibitor</SelectItem>
+                              <SelectItem value="banana">Visitor</SelectItem>
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="boothType"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Booth Type</FormLabel>
+                        <Select>
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select Booth types" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectLabel>Booth types</SelectLabel>
+                              <SelectItem value="Vitual booth only (M2)">
+                                Vitual booth only (M2)
+                              </SelectItem>
+                              <SelectItem value="Vitual and in-person booth (M2)">
+                                Vitual and in-person booth (M2)
+                              </SelectItem>
+                              <SelectItem value="open Space">
+                                Open space (M2)
+                              </SelectItem>
+                              <SelectItem value="other">
+                                Other (specify)
+                              </SelectItem>
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div>
+                  <FormField
+                    control={form.control}
+                    name="participants"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Number of participants</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Number of Participants"
+                            className="resize-none"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="other"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>
+                          List any other specific requirement if any.
+                        </FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="List any other specific requirement if any."
+                            className="resize-none"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div>
+                  <h3 className="mb-4 text-lg font-medium">
+                    Email Notifications
+                  </h3>
+                  <div className="space-y-4">
+                    <FormField
+                      control={form.control}
+                      name="terms"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                          <div className="space-y-0.5">
+                            <FormLabel>Terms and Conditions</FormLabel>
+                            <FormDescription>
+                              By applying you agree and accept our terms and
+                              conditions for the Nanenane exhibitions of 2024.
+                            </FormDescription>
+                          </div>
+                          <FormControl>
+                            <Switch
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <Button className="" size="lg">
+                    Submit Application
+                  </Button>
+                </div>
+              </form>
+            </Form>
+            {/* <div className="flex flex-col w-full gap-y-5">
+              <div className="w-full">
+                <Label htmlFor="picture">
+                  * Upload copy of your id or passport photo (Only JPG/PNG file)
+                  - This will be used on your access badge required photo size
+                  is 40MM x 40MM colored.
+                </Label>
+                <Input id="picture" type="file" className="mt-2" />
+              </div>
+            </div> */}
           </div>
         </div>
       </div>
