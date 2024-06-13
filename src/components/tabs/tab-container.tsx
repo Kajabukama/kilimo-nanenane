@@ -129,16 +129,17 @@ const TabContainer = () => {
                 and scaled investments.
               </p>
             </div> */}
-            <div className="flex flex-col gap-y-1 font-semibold">
+            <div className="flex flex-col gap-y-1 font-medium">
               <span>
-                Theme -“Elect Reputable Local Government Leaders for Sustainable
-                Development of Agricultural Sector”
+                Theme : “Elect Reputable Local Government Leaders for
+                Sustainable Development of Agricultural Sector”
               </span>
               <span>Nanenane Exhibition - 01th to 8th August 2024</span>
               <span>Grounds - Dodoma Nanenane Grounds, Dodoma, Tanzania</span>
             </div>
-            <div className="py-10 border-y">
-              <p className="text-primary font-medium">
+            <div className="py-10">
+              <h3 className="mb-4 text-2xl font-semibold">Payment methods</h3>
+              <p className="font-regular border border-primary p-5 rounded">
                 Pay participation fee within 7days after registration and before
                 deadline (added). For Nzuguni Exhibition center in Dodoma please
                 pay through Account No. 50501100063 Nanenane Kanda ya Kati au
@@ -151,7 +152,7 @@ const TabContainer = () => {
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="w-full space-y-6"
+                className="w-full space-y-6 border p-10 rounded"
               >
                 <div className="flex w-full gap-x-5">
                   <FormField
@@ -442,7 +443,7 @@ const TabContainer = () => {
                     )}
                   />
                 </div>
-                <div>
+                <div className="space-y-8">
                   <FormField
                     control={form.control}
                     name="participants"
@@ -482,7 +483,7 @@ const TabContainer = () => {
                 </div>
                 <div>
                   <h3 className="mb-4 text-lg font-medium">
-                    Email Notifications
+                    User terms and Conditions
                   </h3>
                   <div className="space-y-4">
                     <FormField

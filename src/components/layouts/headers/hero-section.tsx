@@ -30,7 +30,7 @@ const HeroSection = () => {
         />
       </div>
       <div className="absolute flex-col top-0 left-0 bottom-0 right-0 w-full z-10 px-20 bg-gradient-to-r from-primary">
-        <div className="text-white max-w-screen-lg  flex flex-col items-start justify-start pb-10 pt-10">
+        <div className="text-white max-w-screen-xl  flex flex-col items-start justify-start pb-10 pt-10">
           <div className="flex flex-col mt-20 mb-20">
             <h1 className="uppercase font-black text-6xl">
               Karibu kwenye maonyesho
@@ -40,12 +40,14 @@ const HeroSection = () => {
               <span className="bg-white text-primary px-5">Nanenane</span>
             </h1>
           </div>
-          <div className="flex flex-col text-yellow-400 text-5xl font-semibold my-10">
+          <div className="flex flex-col text-yellow-400 text-5xl font-semibold my-14">
             <span>08 October 2024 - Dodoma, Tanzania</span>
           </div>
           <div className="font-bold text-4xl space-y-3 mb-20 uppercase">
-            <span className="bg-white text-primary px-4">Kauli Mbiu</span>
-            <div>
+            <div className="bg-white inline-flex text-primary px-4 py-4 font-black">
+              Kauli Mbiu
+            </div>
+            <div className="font-medium mt-5">
               &rdquo;Chagua Viongozi Bora wa Serikali za Mitaa kwa Maendeleo
               Endelevu ya Kilimo, Mifugo na Uvuvi&rdquo;
             </div>
