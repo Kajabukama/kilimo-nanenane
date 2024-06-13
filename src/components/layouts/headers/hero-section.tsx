@@ -46,8 +46,8 @@ const HeroSection = () => {
           <div className="font-bold text-4xl space-y-3 mb-20 uppercase">
             <span className="bg-white text-primary px-4">Kauli Mbiu</span>
             <div>
-              "Chagua Viongozi Bora wa Serikali za Mitaa kwa Maendeleo Endelevu
-              ya Kilimo, Mifugo na Uvuvi
+              &rdquo;Chagua Viongozi Bora wa Serikali za Mitaa kwa Maendeleo
+              Endelevu ya Kilimo, Mifugo na Uvuvi&rdquo;
             </div>
           </div>
         </div>

@@ -50,7 +50,7 @@ const CountDown: React.FC = () => {
     return () => {
       clearInterval(updateTime);
     };
-  }, [time]);
+  }, [time, countDownDate]);
 
   const handleClick = () => {
     setTime(newTime);
