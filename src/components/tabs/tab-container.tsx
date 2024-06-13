@@ -356,10 +356,10 @@ const TabContainer = () => {
                       <FormItem className="w-full">
                         <FormLabel>Full company address</FormLabel>
                         <FormControl>
-                          <Textarea
-                            placeholder="Company address"
-                            className="resize-none"
-                            rows={2}
+                          <Input
+                            type="text"
+                            id="address"
+                            placeholder="Full address"
                             {...field}
                           />
                         </FormControl>
@@ -514,7 +514,7 @@ const TabContainer = () => {
                   </div>
                 </div>
                 <div>
-                  <Button className="" size="lg">
+                  <Button className="py-6" size="lg">
                     Submit Application
                   </Button>
                 </div>
