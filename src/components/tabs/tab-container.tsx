@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import CustomTab from "./tab";
+import { Button } from "../ui/button";
 
 const TabContainer = () => {
   const [selectedTab, setSelectedTab] = useState<boolean | null>(false);
@@ -65,6 +66,9 @@ const TabContainer = () => {
                 sustainable, resilient, and equitable Agriculture in Tanzania
                 #88TZ2024
               </p>
+            </div>
+            <div className="grid grid-cols-3">
+              <Button className="py-8">Premium Membership</Button>
             </div>
           </div>
         </div>
