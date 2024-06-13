@@ -97,8 +97,10 @@ const TabContainer = () => {
       </div>
       <div className="mx-auto max-w-screen-xl">
         <div className="flex p-10">
-          <div className="max-w-96 text-3xl font-black uppercase">
-            Nanenane Exhibition REGISTRATION 2024
+          <div className="max-w-96">
+            <div className="text-3xl font-black uppercase text-primary">
+              <h1>Nanenane Exhibition REGISTRATION 2024</h1>
+            </div>
           </div>
           <div className="px-10 space-y-5">
             <div className="border-b pb-10">

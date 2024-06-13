@@ -5,7 +5,7 @@ import { TimerInput } from "./timer-input";
 import { TimerContainer } from "./counter-container";
 
 const CountDown: React.FC = () => {
-  const [time, setTime] = useState<number>(7);
+  const [time, setTime] = useState<number>(47);
   const [newTime, setNewTime] = useState<number>(0);
   const [days, setDays] = useState<number>(0);
   const [hours, setHours] = useState<number>(0);
