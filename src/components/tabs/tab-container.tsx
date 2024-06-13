@@ -337,6 +337,10 @@ const TabContainer = () => {
                                 <SelectItem value="Burundi">Burundi</SelectItem>
                                 <SelectItem value="Malawi">Malawi</SelectItem>
                                 <SelectItem value="Zambia">Zambia</SelectItem>
+                                <SelectItem value="South Africa">
+                                  South Africa
+                                </SelectItem>
+                                <SelectItem value="Other">Other</SelectItem>
                               </SelectGroup>
                             </SelectContent>
                           </Select>
