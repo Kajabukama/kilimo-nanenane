@@ -30,6 +30,7 @@ import { Switch } from "@/components/ui/switch";
 import { toast } from "../ui/use-toast";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import ButtonIndicator from "../loaders/button-indicator";
 
 const FormSchema = z.object({
   firstName: z.string().min(1, { message: "This field is required" }),
@@ -551,7 +552,7 @@ const TabContainer = () => {
                 <div className="mt-10">
                   <Button className="py-6" size="lg" disabled={isLoading!}>
                     {isLoading ? (
-                      <div className="">Submitting ...</div>
+                      <ButtonIndicator label="Submitting" />
                     ) : (
                       "Submit Application"
                     )}
