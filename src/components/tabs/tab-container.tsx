@@ -73,16 +73,37 @@ const TabContainer = () => {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    try {
+      const response = await fetch(
+        "http://102.223.10.124:24401/ikmis-crop-management-service/api/v1/nane-nane",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+      console.log("Success:", result);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+    // toast({
+    //   title: "You submitted the following values:",
+    //   description: (
+    //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+    //     </pre>
+    //   ),
+    // });
+  };
 
   return (
     <div>
@@ -286,7 +307,7 @@ const TabContainer = () => {
                         <FormControl>
                           <Input
                             type="text"
-                            id="email"
+                            id="companyName"
                             placeholder="Name of Company/Institution/Individual"
                             {...field}
                           />
@@ -322,7 +343,10 @@ const TabContainer = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Country of Origin</FormLabel>
-                          <Select>
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
                             <SelectTrigger className="w-full">
                               <SelectValue placeholder="Country of Origin" />
                             </SelectTrigger>
@@ -400,7 +424,10 @@ const TabContainer = () => {
                     render={({ field }) => (
                       <FormItem className="w-full">
                         <FormLabel>Registration Type</FormLabel>
-                        <Select>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
                           <SelectTrigger className="w-full">
                             <SelectValue placeholder="Registration type" />
                           </SelectTrigger>
@@ -422,7 +449,10 @@ const TabContainer = () => {
                     render={({ field }) => (
                       <FormItem className="w-full">
                         <FormLabel>Booth Type</FormLabel>
-                        <Select>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
                           <SelectTrigger className="w-full">
                             <SelectValue placeholder="Select Booth types" />
                           </SelectTrigger>
