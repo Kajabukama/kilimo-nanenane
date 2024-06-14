@@ -3,7 +3,6 @@ import Image from "next/image";
 
 import cover from "/public/assets/images/nanenane-cover.jpeg";
 import agenda from "/public/assets/images/agenda.png";
-import CountDown from "@/components/counter/counter";
 
 const HeroSection = () => {
   return (

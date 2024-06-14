@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import CustomTab from "./tab";
-import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import {
   Select,
@@ -96,13 +95,13 @@ const TabContainer = () => {
         router.push("/thank-you");
       }
       toast({
-        title: "Your form was submitted",
+        title: "Your form was submitted successfully",
         description: `${result.description}`,
       });
     } catch (error: any) {
       toast({
         title: "There were problems submitting your request.",
-        description: `${error}`,
+        description: `${error}, try again later.`,
       });
     } finally {
       setIsLoading(false);
