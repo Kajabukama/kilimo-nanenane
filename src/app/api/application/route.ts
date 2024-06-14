@@ -1,42 +1,37 @@
-// pages/api/proxy.ts
-import { NextApiRequest, NextApiResponse } from "next";
-import http from "http";
+// src/app/api/application/route.ts
+import { NextRequest, NextResponse } from "next/server";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method === "POST") {
-    const options = {
-      hostname: "102.223.10.124",
-      port: 24401,
-      path: "/ikmis-crop-management-service/api/v1/nane-nane",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const response = await fetch(
+      "http://102.223.10.124:24401/ikmis-crop-management-service/api/v1/nane-nane",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    );
 
-    const proxyReq = http.request(options, (proxyRes) => {
-      let data = "";
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
 
-      proxyRes.on("data", (chunk) => {
-        data += chunk;
-      });
-
-      proxyRes.on("end", () => {
-        res.status(proxyRes.statusCode || 200).json(JSON.parse(data));
-      });
-    });
-
-    proxyReq.on("error", (e) => {
-      console.error(`Problem with request: ${e.message}`);
-      res.status(500).json({ message: "Internal server error" });
-    });
-
-    proxyReq.write(JSON.stringify(req.body));
-    proxyReq.end();
-  } else {
-    res.setHeader("Allow", ["POST"]);
-    res.status(405).end(`Method ${req.method} not allowed`);
+    const result = await response.json();
+    return NextResponse.json(result, { status: response.status });
+  } catch (error) {
+    console.error("Error:", error);
+    return NextResponse.json(
+      { message: "Internal server error" },
+      { status: 500 }
+    );
   }
-};
+}
 
-export default handler;
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
