@@ -40,7 +40,7 @@ const HeroSection = () => {
               <span className="bg-white text-primary px-5">Nanenane</span>
             </h1>
           </div>
-          <div className="flex flex-col text-yellow-400 text-5xl font-semibold my-14">
+          <div className="flex flex-col text-yellow-400 text-3xl font-semibold my-5">
             <span>08 October 2024 - Dodoma, Tanzania</span>
           </div>
           <div className="font-bold text-4xl space-y-3 mb-20 uppercase">

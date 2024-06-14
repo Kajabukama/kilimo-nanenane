@@ -29,6 +29,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { toast } from "../ui/use-toast";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 const FormSchema = z.object({
   firstName: z.string().min(1, { message: "This field is required" }),
@@ -50,7 +51,8 @@ const FormSchema = z.object({
 });
 
 const TabContainer = () => {
-  const [selectedTab, setSelectedTab] = useState<boolean | null>(false);
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean | null>(false);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -74,6 +76,7 @@ const TabContainer = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    setIsLoading(true);
     try {
       const response = await fetch("/api/application", {
         method: "POST",
@@ -88,18 +91,21 @@ const TabContainer = () => {
       }
 
       const result = await response.json();
-      console.log("Success:", result);
-    } catch (error) {
-      console.error("Error submitting form:", error);
+      if (result.status) {
+        router.push("/thank-you");
+      }
+      toast({
+        title: "Your form was submitted",
+        description: `${result.description}`,
+      });
+    } catch (error: any) {
+      toast({
+        title: "There were problems submitting your request.",
+        description: `${error}`,
+      });
+    } finally {
+      setIsLoading(false);
     }
-    // toast({
-    //   title: "You submitted the following values:",
-    //   description: (
-    //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-    //     </pre>
-    //   ),
-    // });
   };
 
   return (
@@ -542,9 +548,13 @@ const TabContainer = () => {
                     />
                   </div>
                 </div>
-                <div>
-                  <Button className="py-6" size="lg">
-                    Submit Application
+                <div className="mt-10">
+                  <Button className="py-6" size="lg" disabled={isLoading!}>
+                    {isLoading ? (
+                      <div className="">Submitting ...</div>
+                    ) : (
+                      "Submit Application"
+                    )}
                   </Button>
                 </div>
               </form>
