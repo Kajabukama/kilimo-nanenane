@@ -7,7 +7,7 @@ import CountDown from "@/components/counter/counter";
 
 const HeroSection = () => {
   return (
-    <div className="relative h-[70vh] z-20">
+    <div className="relative h-[60vh] z-20">
       <Image
         src={cover}
         alt="Links"
@@ -31,7 +31,7 @@ const HeroSection = () => {
       </div>
       <div className="absolute flex-col top-0 left-0 bottom-0 right-0 w-full z-10 px-20 bg-gradient-to-r from-primary">
         <div className="text-white max-w-screen-xl  flex flex-col items-start justify-start pb-10 pt-10">
-          <div className="flex flex-col mt-20 mb-20">
+          <div className="flex flex-col mt-10 mb-10">
             <h1 className="uppercase font-black text-6xl">
               Karibu kwenye maonyesho
             </h1>
